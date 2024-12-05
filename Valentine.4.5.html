@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            color: #ff5e78;
+        }
+        p {
+            font-size: 1.2rem;
+            margin: 20px 0;
+        }
+        .buttons {
+            margin-top: 30px;
+        }
+        button {
+            font-size: 1.2rem;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .yes {
+            background-color: #ff5e78;
+            color: white;
+        }
+        .yes:hover {
+            background-color: #ff3b4f;
+        }
+        .no {
+            background-color: #ddd;
+            color: #333;
+        }
+        .no:hover {
+            background-color: #bbb;
+        }
+        .calendar {
+            margin-top: 20px;
+        }
+        .calendar input {
+            font-size: 1rem;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hi Hannah!</h1>
+        <p>Will you be my date this Valentine's Day? 💕</p>
+        
+        
+        <div class="buttons">
+            <button class="yes" onclick="showResponse('yes')">Yes</button>
+            <button class="no" onclick="showResponse('no')">No</button>
+        </div>
+
+        <script>
+            function replaceText() {
+                document.getElementById("helloworld").innerHTML = "OMG! YESSSS!!!!!11!!!1";
+            }
+        </script>
+
+        <div id="calendar" class="calendar" style="display: none;">
+            <p>When are you free? Please pick a date:</p>
+            <input type="date" id="free-date" onchange="dateSelected()">
+        </div>
+        <p id="response" style="margin-top: 30px; font-size: 1.5rem; display: none;"></p>
+        <div id="restaurant-choice" style="margin-top: 30px; display: none;">
+            <p>Great! Where would you like to go?</p>
+            <button class="yes" onclick="finalResponse('Italian')">Italian</button>
+            <button class="yes" onclick="finalResponse('Sushi')">Sushi</button>
+            <button class="yes" onclick="finalResponse('Steakhouse')">Steakhouse</button>
+            <button class="yes" onclick="finalResponse('Home cooking date')">Home cooking date</button>
+            <button class="yes" onclick="finalResponse('Custom 👀')">Custom 👀</button>
+        </div>
+        <div id="after-dinner" style="margin-top: 30px; display: none;">
+            <img id="restaurant-image" src="" alt="" style="width: 100%; border-radius: 15px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); margin-bottom: 20px;">
+            <h1>What will we do after dinner?</h1>
+            <button class="yes">Watch a Movie</button>
+            <button class="yes">Go for a Walk</button>
+            <button class="yes">Surprise Me!</button>
+        </div>
+    </div>
+
+    <script>
+        function showResponse(answer) {
+            const imageContainer = document.createElement('div');
+            imageContainer.style.marginTop = '20px';
+
+            const loveImage = document.createElement('img');
+            loveImage.src = 'https://cdn.discordapp.com/attachments/928991777321541715/1314337668296867920/image.jpg?ex=675367d7&is=67521657&hm=af854fa8d8a3ab5815779be01ad5d1782dca3ef79c7fe1945edc967ebc3ac1b9&'; // Replace with your desired image URL
+            loveImage.alt = 'I love you';
+            loveImage.style.width = '100%';
+            loveImage.style.borderRadius = '10px';
+            loveImage.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+
+            imageContainer.appendChild(loveImage);
+            document.querySelector('.container').appendChild(imageContainer);
+            const response = document.getElementById('response');
+            const restaurantChoice = document.getElementById('restaurant-choice');
+            const calendar = document.getElementById('calendar');
+            if (answer === 'yes') {
+                response.textContent = 'Yay! I can’t wait for our date! ❤️';
+                restaurantChoice.style.display = 'block';
+                calendar.style.display = 'block';
+            } else {
+                response.textContent = 'Oh no! Maybe another time? 😢';
+                restaurantChoice.style.display = 'none';
+                calendar.style.display = 'none';
+            }
+            response.style.display = 'block';
+        }
+
+        function finalResponse(restaurant) {
+            const response = document.getElementById('response');
+            response.textContent = `Perfect! Let's enjoy a lovely dinner at a ${restaurant} restaurant! 🥂`;
+            document.getElementById('restaurant-choice').style.display = 'none';
+
+            const afterDinner = document.getElementById('after-dinner');
+            const restaurantImage = document.getElementById('restaurant-image');
+            restaurantImage.src = `https://via.placeholder.com/400x300?text=${restaurant}`; // Replace with actual image URLs if available
+            restaurantImage.alt = restaurant;
+            afterDinner.style.display = 'block';
+        }
+
+        function dateSelected() {
+            const date = document.getElementById('free-date').value;
+            if (date) {
+                const response = document.getElementById('response');
+                response.textContent = `Great! I've noted ${date} as our special day. 🌟`;
+                document.getElementById('calendar').style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
